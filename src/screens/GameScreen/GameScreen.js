@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableNativeFeedback, Alert, Button } from 'react-native';
 
-import Grid from '../../components/Grid/Grid';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class GameScreen extends React.Component {
@@ -13,6 +12,8 @@ class GameScreen extends React.Component {
             [0, 0, 0]
         ],
         currentPlayer: 1,
+        counterX: 0,
+        counterO: 0
     }
 
     initGame = () => {
@@ -34,11 +35,13 @@ class GameScreen extends React.Component {
         const numOfTiles = 3;
         let arr = this.state.gameState;
         let sum;
+        let xWon = this.state.counterX;
 
         //rows
         for (let i = 0; i < numOfTiles; i++) {
             sum = arr[i][0] + arr[i][1] + arr[i][2];
             if (sum == 3) {
+                xWon += xWon;
                 return 1;
             } else if (sum == -3) {
                 return -1;
@@ -56,12 +59,11 @@ class GameScreen extends React.Component {
         }
 
         //diagonals
-
         sum = arr[0][0] + arr[1][1] + arr[2][2];
         if (sum == 3) {
             return 1;
-        } else if (sum == 6) {
-            return 2;
+        } else if (sum == -3) {
+            return -1;
         }
 
         sum = arr[2][0] + arr[1][1] + arr[0][2];
@@ -72,11 +74,7 @@ class GameScreen extends React.Component {
         }
 
         return 0;
-
     }
-
-
-
 
     onTilePress = (row, col) => {
 
@@ -84,7 +82,6 @@ class GameScreen extends React.Component {
         if (value != 0) {
             return;
         }
-
 
         let currentPlayer = this.state.currentPlayer;
         let arr = this.state.gameState.slice();
@@ -98,22 +95,21 @@ class GameScreen extends React.Component {
             currentPlayer: nextPlayer
         });
 
-
         let winner = this.whoWon();
         if(winner == 1){
             Alert.alert('Player 1 has won!');
+            this.setState({counterX: this.state.counterX + 1});
             this.initGame();
         }else if(winner == -1){
             Alert.alert('Player 2 has won!');
+            this.setState({counterO: this.state.counterO + 1});
             this.initGame();
         }
-
     }
 
     onNewGamePress = () => {
         this.initGame();
     }
-
 
     drawIcon = (row, col) => {
         let value = this.state.gameState[row][col];
@@ -122,7 +118,6 @@ class GameScreen extends React.Component {
             case -1: return <Icon name='md-radio-button-off' style={styles.tileO} />;
             default: return <View />;
         }
-
     }
 
     static navigationOptions = {
@@ -186,6 +181,10 @@ class GameScreen extends React.Component {
                             </View>
                         </TouchableNativeFeedback>
                     </View>
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={[styles.tileX, {fontSize: 30, marginRight: 10}]}>X won: {this.state.counterX}</Text>
+                    <Text style={[styles.tileO, {fontSize: 30, marginLeft: 10}]}>Y won: {this.state.counterO}</Text>
                 </View>
                 <View style={styles.newGameBtn}>
                 <Button color='orange' title='New Game' onPress={this.onNewGamePress} />
