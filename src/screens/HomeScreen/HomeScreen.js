@@ -56,13 +56,14 @@ const styles = StyleSheet.create({
         width: 150,
         borderRadius: 50,
         alignSelf: 'center',
-        top: Dimensions.get('window').height * 0.15
+        top: Dimensions.get('window').height * 0.1
     },
 
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-
+        backgroundColor: 'white',
+        flex: 1
     },
     btnText: {
         color: 'black',
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
         height: 100
     },
     grid: {
-        top: Dimensions.get('window').height * 0.1
+        top: Dimensions.get('window').height * -0.05
     }
 
 })

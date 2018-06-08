@@ -199,7 +199,8 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-
+        backgroundColor: 'white',
+        flex: 1
     },
     tile: {
         borderWidth: 1,
@@ -221,10 +222,10 @@ const styles = StyleSheet.create({
         top: 20
     },
     grid: {
-        top: Dimensions.get('window').height * 0.1
+        top: Dimensions.get('window').height * -0.1
     },
     newGameBtn:{
-        top: 150
+        top: 50
     }
 
 })
