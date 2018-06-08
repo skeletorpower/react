@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\aleksandar.novic\\Desktop\\react\\tictactoe\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-eu-rES\\values-eu-rES.xml",
+            "outputFile": "C:\\Users\\AleksandarNovic\\Desktop\\tictactoe\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-eu-rES\\values-eu-rES.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\aleksandar.novic\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\5cb01f9c9430394ab84c5e5da449d063\\res\\values-eu-rES\\values-eu-rES.xml",
+                    "source": "C:\\Users\\AleksandarNovic\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\02b96163887143eb5452f48c6a616526\\res\\values-eu-rES\\values-eu-rES.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
