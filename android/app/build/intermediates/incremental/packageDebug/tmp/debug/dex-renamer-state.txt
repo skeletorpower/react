@@ -1,4 +1,4 @@
-#Sun Jun 10 14:59:45 CEST 2018
-base.0=C\:\\Users\\aleksandar.novic\\Desktop\\react\\tictactoe\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Mon Jun 11 08:20:54 CEST 2018
+base.0=C\:\\Users\\AleksandarNovic\\Desktop\\tictactoe\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

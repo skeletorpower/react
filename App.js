@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import HomeScreen from './src/screens/HomeScreen/HomeScreen';
@@ -12,22 +12,20 @@ const NavigationApp = StackNavigator({
   Game: { screen: GameScreen }
 })
 
-
-
 export default class App extends React.Component {
 
   state = {
-    component: <SplashScreen />
+    component: <SplashScreen />,
   }
 
-  componentDidMount(){
-    this.timeoutHandle = setTimeout(()=>{
-      // Add your logic for the transition
+  componentDidMount() {
+    this.timeoutHandle = setTimeout(() => {
+
       this.setState({ component: <NavigationApp /> })
- }, 2500);
+    }, 2500);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearTimeout(this.timeoutHandle);
   }
 

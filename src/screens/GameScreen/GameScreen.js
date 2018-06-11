@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Dimensions, TouchableNativeFeedback, Alert, But
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
+
 class GameScreen extends React.Component {
 
     state = {
@@ -13,7 +14,9 @@ class GameScreen extends React.Component {
         ],
         currentPlayer: 1,
         counterX: 0,
-        counterO: 0
+        counterO: 0,
+        modalVisible: true,
+
     }
 
     initGame = () => {
@@ -77,7 +80,6 @@ class GameScreen extends React.Component {
     }
 
     onTilePress = (row, col) => {
-
         let value = this.state.gameState[row][col];
         if (value != 0) {
             return;
@@ -96,13 +98,13 @@ class GameScreen extends React.Component {
         });
 
         let winner = this.whoWon();
-        if(winner == 1){
-            Alert.alert('Player 1 has won!');
-            this.setState({counterX: this.state.counterX + 1});
+        if (winner == 1) {
+            Alert.alert('Player 1 has won!')
+            this.setState({ counterX: this.state.counterX + 1 });
             this.initGame();
-        }else if(winner == -1){
+        } else if (winner == -1) {
             Alert.alert('Player 2 has won!');
-            this.setState({counterO: this.state.counterO + 1});
+            this.setState({ counterO: this.state.counterO + 1 });
             this.initGame();
         }
     }
@@ -182,12 +184,12 @@ class GameScreen extends React.Component {
                         </TouchableNativeFeedback>
                     </View>
                 </View>
-                <View style={{flexDirection: 'row'}}>
-                    <Text style={[styles.tileX, {fontSize: 30, marginRight: 10}]}>X won: {this.state.counterX}</Text>
-                    <Text style={[styles.tileO, {fontSize: 30, marginLeft: 10}]}>Y won: {this.state.counterO}</Text>
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={[styles.tileX, { fontSize: 30, marginRight: 10 }]}>X won: {this.state.counterX}</Text>
+                    <Text style={[styles.tileO, { fontSize: 30, marginLeft: 10 }]}>Y won: {this.state.counterO}</Text>
                 </View>
                 <View style={styles.newGameBtn}>
-                <Button color='orange' title='New Game' onPress={this.onNewGamePress} />
+                    <Button color='orange' title='New Game' onPress={this.onNewGamePress} />
                 </View>
             </View>
         )
@@ -223,8 +225,13 @@ const styles = StyleSheet.create({
     grid: {
         top: Dimensions.get('window').height * -0.1
     },
-    newGameBtn:{
+    newGameBtn: {
         top: 50
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 
 })
