@@ -15,8 +15,6 @@ class GameScreen extends React.Component {
         currentPlayer: 1,
         counterX: 0,
         counterO: 0,
-        modalVisible: true,
-
     }
 
     initGame = () => {
