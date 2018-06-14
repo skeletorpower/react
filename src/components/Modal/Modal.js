@@ -1,15 +1,21 @@
 import React from 'react';
-import {Modal} from 'react-native';
+import {Modal, View, Text } from 'react-native';
 
 
 const modal = (props) => {
-    return(
-        <Modal onRequestClose={() => props.onRequestClose}>
-            <View style={{flex: 0.6, backgroundColor: 'orange'}}>
-                {props.children}
+    return (
+        <Modal
+            animationType="slide"
+            transparent={false}
+            visible={props.visible}
+            onRequestClose={() => props.onRequestClose}>
+            <View style={{ marginTop: 22, flex: 1, backgroundColor: 'white' }}>
+                <View>
+                    <Text>Hello World!</Text>
+                </View>
             </View>
         </Modal>
-    )
+    );
 }
 
 export default modal;

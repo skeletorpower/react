@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableNativeFeedback, Alert, Button } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
-import Modal from '../../components/Modal/Modal';
 
 class GameScreen extends React.Component {
 
@@ -15,8 +14,6 @@ class GameScreen extends React.Component {
         currentPlayer: 1,
         counterX: 0,
         counterO: 0,
-        isUndo: false,
-        modalVisible: false
     }
 
     initGame = () => {
@@ -79,13 +76,6 @@ class GameScreen extends React.Component {
         return 0;
     }
 
-    showModal = (winner) => {
-        this.setState({ modalVisible: true });
-        <Modal onRequestClose={() => this.onNewGamePress()}>
-            <Text>Player {winner} has won!</Text>
-            <Button title='OK' onPress={this.onModalClose} />
-        </Modal>
-    }
 
     onModalClose = () => {
         this.setState({ modalVisible: false });
@@ -110,8 +100,9 @@ class GameScreen extends React.Component {
         });
 
         let winner = this.whoWon();
-        if (winner == 1) {
 
+        if (winner == 1) {
+            Alert.alert('Player X has won!');
             this.setState({ counterX: this.state.counterX + 1 });
             this.initGame();
         } else if (winner == -1) {
