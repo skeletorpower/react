@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableNativeFeedback, Alert, Button } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import Modal from '../../components/Modal/Modal';
 
 class GameScreen extends React.Component {
 
@@ -15,6 +15,8 @@ class GameScreen extends React.Component {
         currentPlayer: 1,
         counterX: 0,
         counterO: 0,
+        isUndo: false,
+        modalVisible: false
     }
 
     initGame = () => {
@@ -77,6 +79,18 @@ class GameScreen extends React.Component {
         return 0;
     }
 
+    showModal = (winner) => {
+        this.setState({ modalVisible: true });
+        <Modal onRequestClose={() => this.onNewGamePress()}>
+            <Text>Player {winner} has won!</Text>
+            <Button title='OK' onPress={this.onModalClose} />
+        </Modal>
+    }
+
+    onModalClose = () => {
+        this.setState({ modalVisible: false });
+    }
+
     onTilePress = (row, col) => {
         let value = this.state.gameState[row][col];
         if (value != 0) {
@@ -97,11 +111,11 @@ class GameScreen extends React.Component {
 
         let winner = this.whoWon();
         if (winner == 1) {
-            Alert.alert('Player 1 has won!')
+
             this.setState({ counterX: this.state.counterX + 1 });
             this.initGame();
         } else if (winner == -1) {
-            Alert.alert('Player 2 has won!');
+            Alert.alert('Player O has won!');
             this.setState({ counterO: this.state.counterO + 1 });
             this.initGame();
         }
@@ -124,6 +138,7 @@ class GameScreen extends React.Component {
         headerMode: 'none',
         header: null
     }
+
 
     render() {
         return (
@@ -187,6 +202,7 @@ class GameScreen extends React.Component {
                 </View>
                 <View style={styles.newGameBtn}>
                     <Button color='orange' title='New Game' onPress={this.onNewGamePress} />
+                    {/* <Button color='salmon' title='Undo' onPress={} /> */}
                 </View>
             </View>
         )
